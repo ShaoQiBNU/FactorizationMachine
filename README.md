@@ -21,15 +21,14 @@ img1
 
 ### FM算法建模
 
-> 普通的线性模型例如LR，是将各个特征独立考虑的，并没有考虑到特征与特征之间的相互关系。但实际上，特征之间可能具有一定的关联。以新闻推荐为例，一般男性用户看军事新闻多，而女性用户喜欢情感类新闻，可以看出性别与新闻的频道有一定的关联性，如果能找出这类的特征，对提升推荐系统的效果是非常有意义的。为了简单起见，只考虑二阶交叉的情况，具体模型如下：
->
-> ![[公式]](https://www.zhihu.com/equation?tex=%5Ctilde%7By%7D%28x%29%3Dw_%7B0%7D%2B%5Csum_%7Bi%3D1%7D%5E%7Bn%7D%7Bw_%7Bi%7Dx_%7Bi%7D%7D%2B%5Csum_%7Bi%3D1%7D%5E%7Bn%7D%7B%5Csum_%7Bj%3Di%2B1%7D%5E%7Bn%7D%7Bw_%7Bij%7Dx_%7Bi%7Dx_%7Bj%7D%7D%7D+%5Ctag%7B1%7D+%5C%5C+)
->
-> 其中， ![[公式]](https://www.zhihu.com/equation?tex=n) 代表样本的特征数量， ![[公式]](https://www.zhihu.com/equation?tex=x_%7Bi%7D) 是第i个特征的值， ![[公式]](https://www.zhihu.com/equation?tex=w_%7B0+%7D) 、 ![[公式]](https://www.zhihu.com/equation?tex=w_%7Bi%7D) 、 ![[公式]](https://www.zhihu.com/equation?tex=w_%7Bij+%7D) 是模型参数，只有当 ![[公式]](https://www.zhihu.com/equation?tex=x_%7Bi%7D) 与 ![[公式]](https://www.zhihu.com/equation?tex=x_%7Bj%7D) 都不为0时，交叉才有意义。
->
-> 在数据稀疏的情况下，满足交叉项不为0的样本将非常少，当训练样本不足时，很容易导致参数 ![[公式]](https://www.zhihu.com/equation?tex=w_%7Bij%7D) 训练不充分而不准确，最终影响模型的效果。
->
-> 那么，交叉项参数的训练问题可以用矩阵分解来近似解决，有下面的公式。
+普通的线性模型例如LR，是将各个特征独立考虑的，并没有考虑到特征与特征之间的相互关系。但实际上，特征之间可能具有一定的关联。以新闻推荐为例，一般男性用户看军事新闻多，而女性用户喜欢情感类新闻，可以看出性别与新闻的频道有一定的关联性，如果能找出这类的特征，对提升推荐系统的效果是非常有意义的。为了简单起见，只考虑二阶交叉的情况，具体模型如下：
+
+![[公式]](https://www.zhihu.com/equation?tex=%5Ctilde%7By%7D%28x%29%3Dw_%7B0%7D%2B%5Csum_%7Bi%3D1%7D%5E%7Bn%7D%7Bw_%7Bi%7Dx_%7Bi%7D%7D%2B%5Csum_%7Bi%3D1%7D%5E%7Bn%7D%7B%5Csum_%7Bj%3Di%2B1%7D%5E%7Bn%7D%7Bw_%7Bij%7Dx_%7Bi%7Dx_%7Bj%7D%7D%7D+%5Ctag%7B1%7D+%5C%5C+)
+
+其中， ![[公式]](https://www.zhihu.com/equation?tex=n) 代表样本的特征数量， ![[公式]](https://www.zhihu.com/equation?tex=x_%7Bi%7D) 是第i个特征的值， ![[公式]](https://www.zhihu.com/equation?tex=w_%7B0+%7D) 、 ![[公式]](https://www.zhihu.com/equation?tex=w_%7Bi%7D) 、 ![[公式]](https://www.zhihu.com/equation?tex=w_%7Bij+%7D) 是模型参数，只有当 ![[公式]](https://www.zhihu.com/equation?tex=x_%7Bi%7D) 与 ![[公式]](https://www.zhihu.com/equation?tex=x_%7Bj%7D) 都不为0时，交叉才有意义。
+
+在数据稀疏的情况下，满足交叉项不为0的样本将非常少，当训练样本不足时，很容易导致参数 ![[公式]](https://www.zhihu.com/equation?tex=w_%7Bij%7D) 训练不充分而不准确，最终影响模型的效果。
+那么，交叉项参数的训练问题可以用矩阵分解来近似解决，有下面的公式。
 
 ## 代码实例
 
