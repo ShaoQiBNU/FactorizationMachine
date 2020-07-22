@@ -13,7 +13,7 @@
 
 > 以电影评分数据集为例，数据集有用户和电影的特征，需要预测用户对没有看过的电影的评分。如下所示：
 
-img1
+![image](https://github.com/ShaoQiBNU/FactorizationMachine/blob/master/img/1.jpg)
 
 > 评分是label，用户id、电影id、评分时间是特征。由于用户id和电影id是categorical类型的，需要经过独热编码（One-Hot Encoding）转换成数值型特征。因为是categorical特征，所以经过one-hot编码以后，导致样本数据变得很稀疏。
 >
@@ -39,7 +39,9 @@ img1
 
 > 直接计算FM的二阶交叉项复杂度较大，可以通过公式变换，减少到线性复杂度，如下：
 
-img2
+
+![image](https://github.com/ShaoQiBNU/FactorizationMachine/blob/master/img/2.jpg)
+
 
 ### 应用
 
@@ -53,7 +55,7 @@ img2
 
 > 模型的参数可以通过梯度下降的方法（例如随机梯度下降）来学习，对于各种的损失函数。FM模型的梯度是：
 
-img3
+![image](https://github.com/ShaoQiBNU/FactorizationMachine/blob/master/img/3.jpg)
 
 > 由于 <a href="https://www.codecogs.com/eqnedit.php?latex=\sum_{j=1}^{n}v_{j,f}x_{j}" target="_blank"><img src="https://latex.codecogs.com/svg.latex?\sum_{j=1}^{n}v_{j,f}x_{j}" title="\sum_{j=1}^{n}v_{j,f}x_{j}" /></a> 只与 f 有关，与 i 是独立的，可以提前计算出来，并且每次梯度更新可以在常数时间复杂度内完成，因此FM参数训练的复杂度也是O(kn)。综上可知，FM可以在线性时间训练和预测，是一种非常高效的模型。
 
@@ -61,7 +63,8 @@ img3
 
 > 2阶FM很容易泛化到高阶，如下：
 
-img4
+![image](https://github.com/ShaoQiBNU/FactorizationMachine/blob/master/img/4.jpg)
+
 
 ## FM算法与SVM、其他Factorization models对比
 
